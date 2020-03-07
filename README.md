@@ -344,3 +344,54 @@ hierarchy:
 [@dliuproduction](https://github.com/dliuproduction)
 [@MatthieuJnon](https://github.com/MatthieuJnon)
 [@mofortin](https://github.com/mofortin)
+
+=====================================================
+个人使用
+## 网页配置
+```
+<div id="webchat"/>
+<script src="https://storage.googleapis.com/mrbot-cdn/webchat-latest.js"></script>
+<script>
+  WebChat.default.init({
+    selector: "#webchat",
+    initPayload: "/get_started",
+    interval: 1000, // 1000 ms between each message
+    // customData: {"userId": "123"}, // arbitrary custom data. Stay minimal as this will be added to the socket
+    socketUrl: "http://localhost:8080",
+    socketPath: "/socket.io/",
+    title: "Title",
+    subtitle: "Subtitle",
+    inputTextFieldHint: "Type a message...",
+    connectingText: "Waiting for server...",
+    hideWhenNotConnected: false,
+    fullScreenMode: false,
+    profileAvatar: "http://to.avat.ar",
+    openLauncherImage: 'myCustomOpenImage.png',
+    closeLauncherImage: 'myCustomCloseImage.png',
+    params: {
+      images: {
+        dims: {
+          width: 300,
+          height: 200,
+        }
+      },
+      storage: "local"
+    }
+  })
+</script>
+```
+## 配置 credentials.yml
+```
+socketio:
+ user_message_evt: user_uttered
+ bot_message_evt: bot_uttered
+ session_persistence: true
+```
+
+
+## rasa启动
+```shell
+rasa run --enable-api --cors "*" --debug --port 8080 --endpoints endpoints.yml
+```
+
+
